@@ -1,10 +1,11 @@
 import express from "express";
 import Recipie from "../models/recipie.js";
+import { protect } from "../middleware/auth.js";
 
 const recipeRouter = express.Router();
 
 //create new Recipe
-recipeRouter.post("/", async (req, res) => {
+recipeRouter.post("/", protect, async (req, res) => {
   const { title, ingredients, instructions, category, photoUrl, cookingTime } =
     req.body;
   try {
@@ -35,7 +36,7 @@ recipeRouter.post("/", async (req, res) => {
 });
 
 //update recipie
-recipeRouter.put("/:id", async (req, res) => {
+recipeRouter.put("/:id", protect, async (req, res) => {
   const id = req.params.id;
   const { title, ingredients, instructions, category, photoUrl, cookingTime } =
     req.body;
@@ -71,7 +72,7 @@ recipeRouter.get("/", async (req, res) => {
 });
 
 //delete recipie
-recipeRouter.delete("/:id", async (req, res) => {
+recipeRouter.delete("/:id", protect, async (req, res) => {
   const id = req.params.id;
   try {
     await Recipie.findByIdAndDelete(id);
