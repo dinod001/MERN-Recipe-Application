@@ -81,3 +81,5 @@ recipeRouter.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "INTERNEL SERVER ERROR", err: error });
   }
 });
+
+export default recipeRouter;
