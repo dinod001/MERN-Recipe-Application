@@ -42,7 +42,7 @@ authRouter.post("/login", async (req, res) => {
     res.json({
       _id: user._id,
       username: user.username,
-      email: username.email,
+      email: user.email,
       token,
     });
   } catch (error) {
