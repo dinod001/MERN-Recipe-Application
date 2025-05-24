@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const RecipieDetails = () => {
@@ -51,10 +51,19 @@ const RecipieDetails = () => {
       <h2 className="text-xl font-semibold mb-2">Instructions</h2>
       <p className="text-gray-700 mb-4">{recipie.instructions}</p>
       {user && user._id === recipie.createdBy && (
-        <>
-          <button>Update</button>
-          <button onClick={() => handleDelete(id)}>Delete</button>
-        </>
+        <div className="flex space-x-4">
+          <Link to={`/edit-recipie/${id}`}>
+            <button className="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
+              Update
+            </button>
+          </Link>
+          <button
+            className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+            onClick={() => handleDelete(id)}
+          >
+            Delete
+          </button>
+        </div>
       )}
     </div>
   );
