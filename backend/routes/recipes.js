@@ -75,6 +75,10 @@ recipeRouter.get("/", async (req, res) => {
 recipeRouter.delete("/:id", protect, async (req, res) => {
   const id = req.params.id;
   try {
+    const recipie = await Recipie.findById({ id });
+    if (recipie.createdBy.toString() !== req.user._id.toString()) {
+      return res.status(404).json({ message: "Not Authorized" });
+    }
     await Recipie.findByIdAndDelete(id);
     res.json("deleted Successfully");
   } catch (error) {
