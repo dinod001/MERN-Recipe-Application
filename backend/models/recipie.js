@@ -20,11 +20,11 @@ const recipeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    photo_url: {
+    photoUrl: {
       type: String,
       required: true,
     },
-    cooking_time: {
+    cookingTime: {
       type: Number,
       required: true,
     },
@@ -37,5 +37,5 @@ const recipeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const recipie = mongoose.model("Recipie", recipeSchema);
-export default recipie;
+const Recipie = mongoose.model("Recipie", recipeSchema);
+export default Recipie;
