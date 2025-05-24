@@ -17,10 +17,12 @@ const NavBar = () => {
         </Link>
         <div className="flex gap-x-4">
           {user ? (
-            <div>
-              {`Welcome ${user.username}`}
+            <div className="flex gap-x-4">
+              <Link to={"/add-recipie"}>
+                <button>Add Recipie</button>
+              </Link>
               <button
-                className=" bg-blue-500 text-white p-1 rounded hover:bg-blue-600 ml-3"
+                className="text-gray-500 hover:text-gray-800"
                 onClick={handleSubmit}
               >
                 Logout

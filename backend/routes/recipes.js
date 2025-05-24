@@ -26,6 +26,7 @@ recipeRouter.post("/", protect, async (req, res) => {
         category,
         photoUrl,
         cookingTime,
+        createdBy: req.user._id,
       });
       res.status(201).json({ message: "New Recipe Added", Recipie: recipie });
     }
