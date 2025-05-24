@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddRecipie from "./pages/AddRecipie";
+import RecipieDetails from "./pages/RecipieDetails";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/add-recipie" element={<AddRecipie />} />
+        <Route path="/recipie/:id" element={<RecipieDetails />} />
       </Routes>
     </AuthProvider>
   );

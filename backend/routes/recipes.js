@@ -72,11 +72,24 @@ recipeRouter.get("/", async (req, res) => {
   }
 });
 
+//get recipie by id
+recipeRouter.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const recipie = await Recipie.findById(id);
+    res.json(recipie);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "INTERNEL SERVER ERROR", err: error });
+  }
+});
+
 //delete recipie
 recipeRouter.delete("/:id", protect, async (req, res) => {
   const id = req.params.id;
+
   try {
-    const recipie = await Recipie.findById({ id });
+    const recipie = await Recipie.findById(req.params.id);
     if (recipie.createdBy.toString() !== req.user._id.toString()) {
       return res.status(404).json({ message: "Not Authorized" });
     }

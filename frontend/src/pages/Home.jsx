@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [recipies, setRecipies] = useState([]);
@@ -44,7 +45,8 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {recipies.map((recipie, index) => (
-          <div
+          <Link
+            to={`/recipie/${recipie._id}`}
             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg duration-300 cursor-pointer"
             key={recipie._id}
           >
@@ -62,7 +64,7 @@ const Home = () => {
               <p className="text-gray-600">{recipie.category}</p>
               <p className="text-gray-600">{recipie.cookingTime} minutes</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
