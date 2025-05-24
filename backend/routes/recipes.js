@@ -65,7 +65,7 @@ recipeRouter.get("/", async (req, res) => {
   try {
     const query = category ? { category } : {};
     const recipies = await Recipie.find(query);
-    res.status(200).json({ message: "Found the Recipie", recipie: recipies });
+    res.status(200).json({ recipies });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "INTERNEL SERVER ERROR", err: error });
