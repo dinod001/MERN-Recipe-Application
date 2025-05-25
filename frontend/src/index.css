@@ -1,1 +1,5 @@
 @import "tailwindcss";
+/* index.css */
+body {
+  @apply bg-gray-100;
+}
