@@ -26,46 +26,62 @@ const Home = () => {
     "Dessert",
     "Snack",
   ];
+
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <div className="flex flex-wrap gap-2 mt-2">
-        {categories.map((cat) => (
-          <button
-            onClick={() => setCategory(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-medium ${
-              category === cat
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-            key={cat}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-      <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {recipies.map((recipie, index) => (
-          <Link
-            to={`/recipie/${recipie._id}`}
-            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg duration-300 cursor-pointer"
-            key={recipie._id}
-          >
-            {recipie.photoUrl && (
-              <img
-                src={recipie.photoUrl}
-                alt={recipie.title}
-                className="w-full h-48 object-cover"
-              />
-            )}
-            <div className="p-4">
-              <h2 className="text-xl font-sembold capitalize">
-                {recipie.title}
-              </h2>
-              <p className="text-gray-600">{recipie.category}</p>
-              <p className="text-gray-600">{recipie.cookingTime} minutes</p>
-            </div>
-          </Link>
-        ))}
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white py-10 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap gap-3  mb-8">
+          {categories.map((cat) => (
+            <button
+              onClick={() => setCategory(cat)}
+              key={cat}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                category === cat
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Recipe Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recipies.map((recipie) => (
+            <Link
+              to={`/recipie/${recipie._id}`}
+              key={recipie._id}
+              className="bg-white rounded-2xl border border-gray-200 shadow hover:shadow-lg transition duration-300 overflow-hidden"
+            >
+              {recipie.photoUrl ? (
+                <img
+                  src={recipie.photoUrl}
+                  alt={recipie.title}
+                  className="w-full h-48 object-cover"
+                />
+              ) : (
+                <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                  No Image
+                </div>
+              )}
+              <div className="p-5">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2 capitalize truncate">
+                  {recipie.title}
+                </h2>
+                <p className="text-sm text-gray-600 mb-1">
+                  <span className="font-medium">Category:</span>{" "}
+                  {recipie.category}
+                </p>
+                <p className="text-sm text-gray-600">
+                  <span className="font-medium">Cooking Time:</span>{" "}
+                  {recipie.cookingTime} mins
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
